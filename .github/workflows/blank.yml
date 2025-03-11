@@ -33,3 +33,5 @@ jobs:
           git add test1_utf8.csv
           git commit -m "Agregar archivo CSV generado por ScriptBusqueda"
           git push origin main
+        env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
