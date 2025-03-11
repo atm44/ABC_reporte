@@ -24,19 +24,27 @@ password = os.getenv('EMAIL_PASSWORD')  # Your email password (or app password)
 receiver_email = os.getenv('EMAIL_SEND') 
 
 
+orden_distritos = {'QUILMES':2,'AVELLANEDA':1,'BERAZATEGUI':0}
+
 ofertas_por_distrito = df.groupby(['descdistrito','descripcioncargo'])['ige'].nunique().reset_index()
 ofertas_por_distrito.columns = ['Distrito','Cargo','Cantidad']
+ofertas_por_distrito["order"] = ofertas_por_distrito.Distrito.map(orden_distritos)
+ofertas_por_distrito = ofertas_por_distrito.sort_values(by=['order','Cantidad'],ascending=False)
+ofertas_por_distrito.drop(columns="order",inplace=True)
 ofertas_por_distrito = tabulate(
     ofertas_por_distrito, 
     headers=ofertas_por_distrito.columns, 
-    tablefmt="html",
+    tablefmt="HTML",
     showindex=False,
 )
 
 
 
-ofertas_por_escuela = df.groupby(['escuela','domiciliodesempeno','descripcioncargo'])['ige'].nunique().reset_index()
-ofertas_por_escuela.columns = ['Escuela','Dirección','Cargo','Cantidad']
+ofertas_por_escuela = df.groupby(['descdistrito','escuela','domiciliodesempeno','descripcioncargo'])['ige'].nunique().reset_index()
+ofertas_por_escuela.columns = ['Distrito','Escuela','Dirección','Cargo','Cantidad']
+ofertas_por_escuela["order"] = ofertas_por_escuela.Distrito.map(orden_distritos)
+ofertas_por_escuela = ofertas_por_escuela.sort_values(by=['order','Cantidad'],ascending=False)
+ofertas_por_escuela.drop(columns="order",inplace=True)
 ofertas_por_escuela = tabulate(
     ofertas_por_escuela, 
     headers=ofertas_por_escuela.columns, 
