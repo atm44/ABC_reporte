@@ -1,5 +1,5 @@
 #! /bin/bash
-
+ mkdir -p DATA
 curl 'https://servicios3.abc.gob.ar/valoracion.docente/api/apd.oferta.encabezado/select?q=*%3A*&rows=1000&facet=true&facet.field=descdistrito&facet.field=descnivelmodalidad&facet.field=cargo&facet.field=estado&facet.limit=200&facet.mincount=1&json.nl=map&fq=descdistrito%3Aberazategui%20quilmes%20avellaneda&fq=cargo%3A*construccion*de*ciudadania*%20*COMUNICACI*%20*taller*lenguajes*%20*observatorio*medios*%20*OCL*%20*precep*&fq=estado:Publicada&wt=csv' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Language: es-AR,es;q=0.8,en-US;q=0.5,en;q=0.3' --compressed -H 'Connection: keep-alive' -H 'Cookie: _ga=GA1.3.1448501204.1598045085; _gid=GA1.3.1833139648.1598875839; IPCZQX034ee7c6fd=0100c3000a1432ac8ea31b21c67f7acb521691f8; ZNPCQ003-33383400=a89f2a51; ZNPCQ003-32383300=4e5b6dbe' -H 'Upgrade-Insecure-Requests: 1' > test1.csv;
 sleep 10;
 iconv -f iso-8859-1 -t UTF-8//TRANSLIT test1.csv -o "./DATA/datos_crudos-$(date +"%d-%m-%Y").csv";
