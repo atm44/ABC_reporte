@@ -47,14 +47,22 @@ ofertas_por_escuela = tabulate(
 cantidad_ofertas = df["ige"].nunique()
 
 subject = f'Hay {cantidad_ofertas} ofertas disponibles del día {datetime.now()}'
-body = f'''Espero que le sea útil
-Tenemos por distrito:
-{ofertas_por_distrito}
-
-Y por escuela:
-{ofertas_por_escuela}
-
-Adjunto detalle completo
+body = f'''\
+<html>
+  <body>
+<p><strong>Espero que le sea &uacute;til</strong></p>
+<ul>
+<li>Tenemos por distrito:</li>
+</ul>
+<p>{ofertas_por_distrito}</p>
+<ul>
+<li>Y por escuela:</li>
+</ul>
+<p>{ofertas_por_escuela}</p>
+<p>&nbsp;</p>
+<p>Adjunto detalle completo</p>
+  </body>
+</html>
 '''
 
 # Email content
