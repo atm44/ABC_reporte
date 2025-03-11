@@ -28,6 +28,7 @@ jobs:
 
       - name: Agregar el archivo CSV generado
         run: |
+          echo ${{ secrets.PAT_TOKEN }}
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add test1_utf8.csv
