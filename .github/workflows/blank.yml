@@ -32,6 +32,6 @@ jobs:
           git config user.email "actions@github.com"
           git add test1_utf8.csv
           git commit -m "Agregar archivo CSV generado por ScriptBusqueda"
-          git push
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/atm44/ABC_reporte.git
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
