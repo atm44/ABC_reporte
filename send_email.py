@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-
+from datetime import datetime
 # Load the CSV
 
 
@@ -21,8 +21,28 @@ smtp_port = os.getenv('SMTP_PORT', '587')  # Default to 587
 sender_email = os.getenv('EMAIL_ADDRESS')  # Your email address
 password = os.getenv('EMAIL_PASSWORD')  # Your email password (or app password)
 receiver_email = os.getenv('EMAIL_SEND') 
-subject = 'CSV File'
-body = 'Please find the attached CSV file.'
+
+
+ofertas_por_distrito = df.groupby(['descdistrito','descripcioncargo'])['ige'].nunique().reset_index()
+ofertas_por_distrito.columns = ['Distrito','Cargo','Cantidad']
+
+
+
+ofertas_por_escuela = df.groupby(['escuela','domiciliodesempeno','descripcioncargo'])['ige'].nunique().reset_index()
+ofertas_por_escuela.columns = ['Escuela','Dirección','Cargo','Cantidad']
+
+cantidad_ofertas = df["ige"].nunique()
+
+subject = f'Hay {cantidad_ofertas} ofertas disponibles del día {datetime.now}'
+body = f'''Espero que le sea útil
+Tenemos por distrito:
+{ofertas_por_distrito}
+
+Y por escuela:
+{ofertas_por_escuela}
+
+Adjunto detalle completo
+'''
 
 # Email content
 msg = MIMEMultipart()
