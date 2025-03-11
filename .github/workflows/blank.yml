@@ -55,6 +55,6 @@ jobs:
         env:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          EMAIL_SEND: ${{ variables.EMAIL_SEND }}
-          SMTP_SERVER: ${{ variables.SMTP_SERVER }}
-          SMTP_PORT: ${{ variables.SMTP_PORT }}
+          EMAIL_SEND: ${{ vars.EMAIL_SEND }}
+          SMTP_SERVER: ${{ vars.SMTP_SERVER }}
+          SMTP_PORT: ${{ vars.SMTP_PORT }}
