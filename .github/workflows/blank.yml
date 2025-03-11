@@ -17,8 +17,8 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Instalar csvkit
-        run: sudo apt-get update && sudo apt-get install -y csvkit
+      - name: Actualizar
+        run: sudo apt-get update 
 
       - name: Dar permisos de ejecución al script
         run: chmod +x ScriptBusqueda
@@ -30,6 +30,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add path/to/generated-file.csv
+          git add test1_utf8.csv
           git commit -m "Agregar archivo CSV generado por ScriptBusqueda"
           git push origin main
