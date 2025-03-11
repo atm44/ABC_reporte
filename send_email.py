@@ -20,7 +20,7 @@ smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')  # Default to Gmail
 smtp_port = os.getenv('SMTP_PORT', '587')  # Default to 587
 sender_email = os.getenv('EMAIL_ADDRESS')  # Your email address
 password = os.getenv('EMAIL_PASSWORD')  # Your email password (or app password)
-receiver_email = 'receiver@example.com'  # Replace with the recipient email
+receiver_email = os.getenv('EMAIL_SEND') 
 subject = 'CSV File'
 body = 'Please find the attached CSV file.'
 
@@ -42,6 +42,7 @@ with open(csv_file, 'rb') as attachment:
 # Send email
 try:
     with smtplib.SMTP(smtp_server, int(smtp_port)) as server:
+        server.ehlo()
         server.starttls()
         server.login(sender_email, password)
         text = msg.as_string()
