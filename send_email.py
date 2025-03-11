@@ -34,7 +34,7 @@ ofertas_por_distrito.drop(columns="order",inplace=True)
 ofertas_por_distrito = tabulate(
     ofertas_por_distrito, 
     headers=ofertas_por_distrito.columns, 
-    tablefmt="HTML",
+    tablefmt="html",
     showindex=False,
 )
 
