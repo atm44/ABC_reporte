@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from datetime import datetime
+from tabulate import tabulate
 # Load the CSV
 
 
@@ -25,15 +26,25 @@ receiver_email = os.getenv('EMAIL_SEND')
 
 ofertas_por_distrito = df.groupby(['descdistrito','descripcioncargo'])['ige'].nunique().reset_index()
 ofertas_por_distrito.columns = ['Distrito','Cargo','Cantidad']
+ofertas_por_distrito = tabulate(
+    ofertas_por_distrito, 
+    headers=ofertas_por_distrito.columns, 
+    tablefmt="grid"
+)
 
 
 
 ofertas_por_escuela = df.groupby(['escuela','domiciliodesempeno','descripcioncargo'])['ige'].nunique().reset_index()
 ofertas_por_escuela.columns = ['Escuela','Dirección','Cargo','Cantidad']
+ofertas_por_escuela = tabulate(
+    ofertas_por_escuela, 
+    headers=ofertas_por_escuela.columns, 
+    tablefmt="grid"
+)
 
 cantidad_ofertas = df["ige"].nunique()
 
-subject = f'Hay {cantidad_ofertas} ofertas disponibles del día {datetime.now}'
+subject = f'Hay {cantidad_ofertas} ofertas disponibles del día {datetime.now()}'
 body = f'''Espero que le sea útil
 Tenemos por distrito:
 {ofertas_por_distrito}
