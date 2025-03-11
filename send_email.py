@@ -12,7 +12,7 @@ from email import encoders
 files = os.listdir("./DATA/")
 files.sort(reverse=True)
 file = files[0] #me quedo con el último
-csv_file = f'./DATA{file}'  # Replace with the path to your CSV file
+csv_file = f'./DATA/{file}'  # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)
 
 # Retrieve sensitive information from GitHub secrets
