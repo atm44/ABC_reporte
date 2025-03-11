@@ -70,7 +70,7 @@ msg = MIMEMultipart()
 msg['From'] = sender_email
 msg['To'] = receiver_email
 msg['Subject'] = subject
-msg.attach(MIMEText(body, 'plain'))
+msg.attach(MIMEText(body, 'html'))
 
 # Attach CSV file
 with open(csv_file, 'rb') as attachment:
