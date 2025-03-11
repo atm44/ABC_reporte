@@ -29,7 +29,8 @@ ofertas_por_distrito.columns = ['Distrito','Cargo','Cantidad']
 ofertas_por_distrito = tabulate(
     ofertas_por_distrito, 
     headers=ofertas_por_distrito.columns, 
-    tablefmt="grid"
+    tablefmt="simple",
+    showindex=False,
 )
 
 
@@ -39,7 +40,8 @@ ofertas_por_escuela.columns = ['Escuela','Dirección','Cargo','Cantidad']
 ofertas_por_escuela = tabulate(
     ofertas_por_escuela, 
     headers=ofertas_por_escuela.columns, 
-    tablefmt="grid"
+    tablefmt="simple",
+    showindex=False,
 )
 
 cantidad_ofertas = df["ige"].nunique()
