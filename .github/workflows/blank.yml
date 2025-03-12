@@ -22,25 +22,6 @@ jobs:
       - name: Actualizar
         run: sudo apt-get update 
 
-      - name: Dar permisos de ejecución al script
-        run: chmod +x ScriptBusqueda
-
-      - name: Ejecutar el script
-        run: ./ScriptBusqueda
-
-      - name: Agregar el archivo CSV generado
-        run: |
-          echo ${{ secrets.PAT_TOKEN }}
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git pull
-          echo "pull ok"
-          git add .
-          git commit -m "Agregar archivo CSV generado por ScriptBusqueda"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/atm44/ABC_reporte.git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
       - name: Set up Python
         uses: actions/setup-python@v4
