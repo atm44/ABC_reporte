@@ -43,3 +43,5 @@ jobs:
           EMAIL_SEND: ${{ vars.EMAIL_SEND }}
           SMTP_SERVER: ${{ vars.SMTP_SERVER }}
           SMTP_PORT: ${{ vars.SMTP_PORT }}
+          LISTA_CARGOS: ${{ vars.LISTA_CARGOS }}
+          LISTA_DISTRITOS: ${{ vars.LISTA_DISTRITOS }}
