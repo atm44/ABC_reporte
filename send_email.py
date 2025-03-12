@@ -46,7 +46,8 @@ df_sin_filtrar["areaincumbencia"] = df_sin_filtrar["areaincumbencia"].str.replac
 df_sin_filtrar["areaincumbencia"] = df_sin_filtrar["areaincumbencia"].str.upper() #Por las dudas
 df = df_sin_filtrar[df_sin_filtrar["areaincumbencia"].isin(lista_codigos_cargos)]
 
-
+file_attachment = "lista_ofertas.xlsx"
+df.to_excel(file_attachment,index=False)
 
 
 
@@ -118,11 +119,11 @@ msg['Subject'] = subject
 msg.attach(MIMEText(body, 'html'))
 
 # Attach CSV file
-with open(csv_file, 'rb') as attachment:
+with open(file_attachment, 'rb') as attachment:
     part = MIMEBase('application', 'octet-stream')
     part.set_payload(attachment.read())
     encoders.encode_base64(part)
-    part.add_header('Content-Disposition', f'attachment; filename={csv_file}')
+    part.add_header('Content-Disposition', f'attachment; filename={file_attachment}')
     msg.attach(part)
 
 # Send email
