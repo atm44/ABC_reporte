@@ -1,6 +1,12 @@
 # Consulta de Cargos en el Portal de Actos Públicos Digitales (APD) de la Provincia de Buenos Aires
 
-Este proyecto permite consultar los cargos publicados disponibles en el Portal de Actos Públicos Digitales (APD) de la Provincia de Buenos Aires para los distritos y cargos de interés especificados. Los resultados se envían a un correo electrónico configurado en las variables de acción del repositorio.
+Este proyecto permite consultar los cargos publicados disponibles en el Portal de Actos Públicos Digitales (APD) de la Provincia de Buenos Aires para los distritos y cargos de interés especificados.
+
+Se genera un reporte diario con un resumen por distrito/cargo y por escuela/cargo indicando cantidad de cargos publicados.
+
+También se adjunta un excel con todos los cargos que cumplen los requisitos.
+
+Se envían automáticamente a un correo electrónico configurado en las variables de acción del repositorio.
 
 ## Requisitos
 
@@ -50,6 +56,7 @@ Una vez configuradas las variables y secretos, el flujo de trabajo se ejecutará
 
 Si necesitas entender cómo funciona el cron, podés utilizar [esta página.](https://crontab.guru/)
 Los reportes se enviarán al correo electrónico especificado.
+
 
 ---
 
