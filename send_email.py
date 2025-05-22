@@ -9,6 +9,13 @@ from datetime import datetime
 from tabulate import tabulate
 import io
 import subprocess
+from openpyxl.utils.exceptions import IllegalCharacterError
+import re
+
+def clean_illegal_chars(text):
+    if isinstance(text, str):
+        return re.sub(r"[\x00-\x08\x0B-\x0C\x0E-\x1F]", "", text)
+    return text
 
 # Retrieve sensitive information from GitHub secrets
 smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')  # Default to Gmail
@@ -31,6 +38,7 @@ df_sin_filtrar["areaincumbencia"] = df_sin_filtrar["areaincumbencia"].str.upper(
 df = df_sin_filtrar[df_sin_filtrar["areaincumbencia"].isin(lista_codigos_cargos)]
 
 file_attachment = "lista_ofertas.xlsx"
+df["domiciliodesempeno"] = df["domiciliodesempeno"].apply(clean_illegal_chars)
 df.to_excel(file_attachment,index=False)
 
 
